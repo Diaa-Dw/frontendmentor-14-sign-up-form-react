@@ -11,12 +11,7 @@ export const SignUpForm = () => {
         <Form />
         <Footer />
       </div>
-      <div className="right">
-        <img
-          src="illustration-sign-up-desktop.svg"
-          alt="illustration-sign-up"
-        />
-      </div>
+      <div className="right"></div>
     </div>
   );
 };
