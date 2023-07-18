@@ -4,6 +4,7 @@
   --Charcoal-Grey: hsl(235, 18%, 26%);
   --Grey: hsl(231, 7%, 60%);
   --White: hsl(0, 0%, 100%);
+  --Tomato: hsl(4, 100%, 67%);
 }
 
 //Media query manager
@@ -129,6 +130,7 @@ body {
 .email-form {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .email-form label {
@@ -144,16 +146,66 @@ body {
   border-radius: 0.5rem;
   margin-bottom: 1.5rem;
 }
-.email-form button {
+
+.email-form input:invalid {
+  border: 0.2rem solid var(--Tomato);
+  background-color: hsla(4, 100%, 67%, 0.089);
+  & ~ span {
+    display: block;
+  }
+}
+
+.email-form span {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--Tomato);
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: none;
+}
+.btn {
   outline: none;
   border: none;
-  background: var(--Dark-Slate-Grey);
+  background-image: linear-gradient(
+    to right,
+    var(--Dark-Slate-Grey),
+    var(--Dark-Slate-Grey)
+  );
   padding: 2rem;
   color: var(--White);
   font-weight: 700;
   font-size: 1.6rem;
   border-radius: 0.5rem;
   margin-bottom: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-image: linear-gradient(
+      to right,
+      #ff5478,
+      #ff566a,
+      #ff5b5b,
+      #ff614d,
+      #ff683d
+    );
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  &:hover::before {
+    opacity: 1;
+  }
 }
 .footer {
   width: 100%;
@@ -182,4 +234,34 @@ body {
     height: 28.4rem;
     background-repeat: repeat;
   }
+}
+
+.success-message-container {
+  max-width: 40rem;
+  box-sizing: border-box;
+  background-color: var(--White);
+  border-radius: 3rem;
+  padding: 4rem;
+  display: flex;
+  gap: 1.5rem;
+  flex-direction: column;
+  @include respond(phone) {
+    height: 100%;
+    border-radius: 0;
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+  }
+}
+.success-message-container img {
+  align-self: flex-start;
+}
+.success-message-container .title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.success-message-container p {
+  margin: 0;
 }
